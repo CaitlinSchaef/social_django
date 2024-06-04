@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'rest_framework',
-    'app_image_upload',
+    'app_social',
 ]
 
 MIDDLEWARE = [
@@ -117,7 +117,7 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
 }
 
-ROOT_URLCONF = 'project_image_upload.urls'
+ROOT_URLCONF = 'project_social.urls'
 
 TEMPLATES = [
     {
@@ -135,7 +135,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'project_image_upload.wsgi.application'
+WSGI_APPLICATION = 'project_social.wsgi.application'
 
 
 # Database

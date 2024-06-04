@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AppImageUploadConfig(AppConfig):
+class AppSocialConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'app_image_upload'
+    name = 'app_social'

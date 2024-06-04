@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes, parser_classes
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
+from rest_framework import viewsets
 
 from .models import *
 from .serializers import *
@@ -66,11 +67,21 @@ def get_posts(request):
   posts_serialized = PostSerializer(posts, many=True)
   return Response(posts_serialized.data)
 
-#Update Post
+#Update Post body? do i need to do one for image?
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def edit_post(request):
   user = request.user
+  id = request.data['id']
+  posts = Posts.objects.get(pk=id)
+
+  posts.post_body = request.data['post_body']
+  posts.save()
+
+  posts_serialized = PostSerializer(posts)
+  return Response(posts_serialized.data)
+
+#Delete Post?
 
 #########################################################################################################################################################################################
 #Comments
@@ -101,7 +112,33 @@ def create_comment(request):
     return Response(comment_serialized.data, status=status.HTTP_201_CREATED)
   return Response(comment_serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#Edit Comment
+
+#Delete Comment
 
 #########################################################################################################################################################################################
-#Reactions 
+#Reactions
+
+#Get Reactions
+
+#Create Reactions
+
+#Edit Reactions
+
+#Delete Reactions
+
+#########################################################################################################################################################################################
+# class views for back end
+
+class ReactionCategoryViewSet(viewsets.ModelViewSet):
+  queryset = ReactionCategory.objects.all()
+  serializer_class = ReactionCategorySerializer
+
+class PostCategoryViewSet(viewsets.ModelViewSet):
+  queryset = PostCategory.objects.all()
+  serializer_class = PostCategorySerializer
+
+class PostSubCategoryViewSet(viewsets.ModelViewSet):
+  queryset = PostSubCategory.objects.all()
+  serializer_class = PostSubCategorySerializer
 

@@ -17,9 +17,20 @@ class PostCategorySerializer(serializers.ModelSerializer):
     models = PostCategory
     fields = ['category']
 
+class PostSubCategorySerializer(serializers.ModelSerializer):
+  class Meta:
+    models = PostSubCategory
+    fields= ['category', 'post_sub_category']
+
+
 class ReactionCategorySerializer(serializers.ModelSerializer):
   class Meta:
     models = ReactionCategory
+    fields = ['id', 'reaction_type']
+
+class ReactionSerializer(serializers.ModelSerializer):
+  class Meta:
+    models = Reaction
     fields = ['id', 'reaction', 'reaction_author']
 
 class CommentSerializer(serializers.ModelSerializer):

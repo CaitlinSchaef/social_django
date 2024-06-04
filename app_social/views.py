@@ -38,7 +38,7 @@ def create_user(request):
    return Response(profile_serialized.data)
 
 #########################################################################################################################################################################################
-# Posts (images framework)
+# Posts (images included so utilizing the parsers)
 
 #Create New Post
 @api_view(['POST'])

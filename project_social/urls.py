@@ -18,7 +18,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('profile/', get_profile),
-    path('posts', get_posts),
+    path('get-posts/', get_posts),
     path('create-post/', create_posts),
     path('refresh/', TokenRefreshView.as_view()),
     path('token/', TokenObtainPairView.as_view()),

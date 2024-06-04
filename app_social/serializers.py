@@ -14,31 +14,31 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class PostCategorySerializer(serializers.ModelSerializer):
   class Meta:
-    models = PostCategory
+    model = PostCategory
     fields = ['category']
 
 class PostSubCategorySerializer(serializers.ModelSerializer):
   class Meta:
-    models = PostSubCategory
+    model = PostSubCategory
     fields= ['category', 'post_sub_category']
 
 
 class ReactionCategorySerializer(serializers.ModelSerializer):
   class Meta:
-    models = ReactionCategory
+    model = ReactionCategory
     fields = ['id', 'reaction_type']
 
 class ReactionSerializer(serializers.ModelSerializer):
   class Meta:
-    models = Reaction
+    model = Reaction
     fields = ['id', 'reaction', 'reaction_author']
 
 class CommentSerializer(serializers.ModelSerializer):
   class Meta:
-    models = Comment
+    model = Comment
     fields = ['id', 'comment_author', 'text']
 
 class PostSerializer(serializers.ModelSerializer):
   class Meta:
-    models = Posts
+    model = Posts
     fields = '__all__'

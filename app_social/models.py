@@ -18,6 +18,7 @@ class PostCategory(models.Model):
 
 class ReactionCategory(models.Model):
   reaction = models.CharField(max_length=100, null=True)
+  reaction_author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
 
   def __str__(self):
     return self.reaction
@@ -35,8 +36,7 @@ class Comment(models.Model):
   text = models.CharField(max_length=500, null=True)
 
   def __str__(self):
-   return self.text
-
+   return f'{self.text} by: {self.comment_author}'
 
 
 class Posts(models.Model):
@@ -49,4 +49,4 @@ class Posts(models.Model):
   comments = models.ForeignKey(Comment, on_delete=models.SET_NULL, null=True)
 
   def __str__(self):
-    return self.category
+    return f'Category: {self.post_category}, Author: {self.post_author}, {self.post_body} {self.post_image}, Posted: {self.created_on} {self.comments} {self.reactions}'

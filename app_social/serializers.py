@@ -11,3 +11,27 @@ class ProfileSerializer(serializers.ModelSerializer):
     model = Profile
     fields = ['id', 'first_name', 'last_name']
 
+class ImageSerializer(serializers.ModelSerializer):
+ class Meta:
+   models = Image
+   fields = ['id', 'title', 'image', 'created_at']
+
+class PostCategorySerializer(serializers.ModelSerializer):
+  class Meta:
+    models = PostCategory
+    fields = ['category']
+
+class ReactionCategorySerializer(serializers.ModelSerializer):
+  class Meta:
+    models = ReactionCategory
+    fields = ['id', 'reaction', 'reaction_author']
+
+class CommentSerializer(serializers.ModelSerializer):
+  class Meta:
+    models = Comment
+    fields = ['id', 'comment_author', 'text']
+
+class PostSerializer(serializers.ModelSerializer):
+  class Meta:
+    models = Posts
+    fields = '__all__'

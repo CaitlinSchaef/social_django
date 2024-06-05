@@ -40,6 +40,8 @@ ALLOWED_HOSTS = ['127.0.0.1', f"{APP_NAME}.fly.dev"]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if APP_NAME:
+    MEDIA_ROOT = '/mnt/volume_mount/media/'
 
 # Application definition
 

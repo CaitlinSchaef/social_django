@@ -46,8 +46,20 @@ def create_user(request):
 # the parser helps it read data
 @parser_classes([MultiPartParser, FormParser])
 def create_posts(request):
+  user = request.user
+  profile = Profile.objects.get(user=user)
+  post_author = profile.id
   # serialize the image that the user is submitting by running it through the image serializer
-  post_serialized = PostSerializer(data=request.data)
+  # you're gonna need to set the back end to default the image as 'null'?
+  post_data = {
+    'post_author': post_author,
+    'post_body': request.data['post_body'],
+    'post_category': request.data['post_category'],
+    'post_sub_category': request.data['post_sub_category'],
+    'image': None
+  }
+  post_serialized = PostSerializer(data=post_data)
+  print('POST SERIALIZED: ', post_serialized)
   # then check to see if it's valid, this is a django built in (the is_valid())
   if post_serialized.is_valid():
     post_serialized.save()

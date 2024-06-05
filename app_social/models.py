@@ -51,8 +51,8 @@ class Posts(models.Model):
   post_sub_category = models.ForeignKey(PostSubCategory, on_delete=models.SET_NULL, null=True)
   post_author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
   post_body = models.CharField(max_length=2000, null=True)
-  image = models.ImageField(upload_to='images/', default=None)
-  image_caption = models.TextField(default=None)
+  image = models.ImageField(upload_to='images/', default=None, null=True)
+  image_caption = models.TextField(default=None, null=True)
   reactions = models.ForeignKey(Reaction, on_delete=models.SET_NULL, null=True, default=None)
   comments = models.ForeignKey(Comment, on_delete=models.SET_NULL, null=True, default=None)
 

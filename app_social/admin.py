@@ -16,8 +16,12 @@ class PostSubCategoryAdmin(admin.ModelAdmin):
 class ReactionCategoryAdmin(admin.ModelAdmin):
   pass
 
+class PostsAdmin(admin.ModelAdmin):
+  pass
+
 admin.site.register(ReactionCategory, ReactionCategoryAdmin)
 admin.site.register(PostSubCategory, PostSubCategoryAdmin)
 admin.site.register(PostCategory, PostCategoryAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Posts, PostsAdmin)
 

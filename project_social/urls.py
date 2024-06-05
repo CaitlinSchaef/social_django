@@ -20,6 +20,7 @@ urlpatterns = [
     path('profile/', get_profile),
     path('get-posts/', get_posts),
     path('create-post/', create_posts),
+    path('create_user/', create_user),
     path('refresh/', TokenRefreshView.as_view()),
     path('token/', TokenObtainPairView.as_view()),
 ]

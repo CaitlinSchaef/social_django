@@ -21,7 +21,7 @@ class PostSubCategory(models.Model):
   post_sub_category = models.CharField(max_length=100, null=True)
 
   def __str__(self):
-    return f'Category{self.category} SubCategory: {self.post_sub_category}'
+    return f'Category: {self.category} SubCategory: {self.post_sub_category}'
 
 class ReactionCategory(models.Model):
   reaction_type = models.CharField(max_length=100, null=True)

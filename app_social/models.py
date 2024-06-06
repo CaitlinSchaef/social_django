@@ -17,11 +17,10 @@ class PostCategory(models.Model):
     return self.category
 
 class PostSubCategory(models.Model):
-  category = models.ForeignKey(PostCategory, on_delete=models.CASCADE)
   post_sub_category = models.CharField(max_length=100, null=True)
 
   def __str__(self):
-    return f'Category: {self.category} SubCategory: {self.post_sub_category}'
+    return f'ID: {self.id} SubCategory: {self.post_sub_category}'
 
 class ReactionCategory(models.Model):
   reaction_type = models.CharField(max_length=100, null=True)
@@ -51,10 +50,10 @@ class Posts(models.Model):
   post_sub_category = models.ForeignKey(PostSubCategory, on_delete=models.SET_NULL, null=True)
   post_author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
   post_body = models.CharField(max_length=2000, null=True)
-  image = models.ImageField(upload_to='images/', default=None, null=True, blank=True)
-  image_caption = models.TextField(default=None, null=True, blank=True)
-  reactions = models.ForeignKey(Reaction, on_delete=models.SET_NULL, null=True, default=None)
-  comments = models.ForeignKey(Comment, on_delete=models.SET_NULL, null=True, default=None)
+  image = models.ImageField(upload_to='images/', null=True, blank=True)
+  image_caption = models.TextField(null=True, blank=True)
+  reactions = models.ForeignKey(Reaction, on_delete=models.SET_NULL, null=True)
+  comments = models.ForeignKey(Comment, on_delete=models.SET_NULL, null=True)
 
   def __str__(self):
     return f'Category: {self.post_category}, Author: {self.post_author}, {self.post_body} {self.image} {self.image_caption}, Posted: {self.created_on} {self.comments} {self.reactions}'

@@ -80,7 +80,7 @@ def get_posts(request):
   posts_serialized = PostSerializer(posts, many=True)
   return Response(posts_serialized.data)
 
-#Update Post body? do i need to do one for image?
+#Update Post body?
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def edit_post(request):

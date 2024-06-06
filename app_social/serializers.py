@@ -39,6 +39,10 @@ class CommentSerializer(serializers.ModelSerializer):
     fields = ['id', 'comment_author', 'text']
 
 class PostSerializer(serializers.ModelSerializer):
+  # post_author = ProfileSerializer(read_only=True)
+  # post_category = PostCategorySerializer(read_only=True, many=True)
+  # post_sub_category = PostSubCategorySerializer(read_only=True, many=True)
+  
   class Meta:
     model = Posts
     fields = '__all__'

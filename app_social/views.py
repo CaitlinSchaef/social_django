@@ -49,15 +49,27 @@ def create_posts(request):
   user = request.user
   profile = Profile.objects.get(user=user)
   post_author = profile.id
-  # serialize the image that the user is submitting by running it through the image serializer
-  # you're gonna need to set the back end to default the image as 'null'?
+  
+  # set these pks up because of the error: 'Incorrect type. Expected pk value, received str.'
+  category_pk = PostCategory.objects.filter(category=request.data['post_category']).first().pk
+  sub_category_pk = PostSubCategory.objects.filter(post_sub_category=request.data['post_sub_category']).first().pk
+  # post_author_pk = Profile.objects.filter(user=request.data['post_author']).first().pk
+  # image gets set to None and then we basically say if its there run it through the serializer and if not its none
+  image = None
+  if 'image' in request.data:
+    image = request.data['image']
+
+  image_caption = None
+  if 'image_caption' in request.data:
+    image_caption = request.data['image_caption']
+
   post_data = {
     'post_author': post_author,
     'post_body': request.data['post_body'],
-    'post_category': request.data['post_category'],
-    'post_sub_category': request.data['post_sub_category'],
-    'image': request.data['image'],
-    'image_caption': request.data['image_caption'],
+    'post_category': category_pk,
+    'post_sub_category': sub_category_pk,
+    'image': image,
+    'image_caption': image_caption,
   }
   post_serialized = PostSerializer(data=post_data)
   print('POST SERIALIZED: ', post_serialized)

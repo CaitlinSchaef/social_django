@@ -56,7 +56,8 @@ def create_posts(request):
     'post_body': request.data['post_body'],
     'post_category': request.data['post_category'],
     'post_sub_category': request.data['post_sub_category'],
-    'image': None
+    'image': request.data['image'],
+    'image_caption': request.data['image_caption'],
   }
   post_serialized = PostSerializer(data=post_data)
   print('POST SERIALIZED: ', post_serialized)

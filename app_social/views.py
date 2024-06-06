@@ -70,7 +70,7 @@ def create_posts(request):
     return Response(post_serialized.data, status=status.HTTP_201_CREATED)
   return Response(post_serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#Get Posts
+#Get ALL Posts
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 # isAuthenticated is something we imported, we could also do IsAdmin or allowAny, it's gonna looks for the JWT for the user
@@ -79,6 +79,7 @@ def get_posts(request):
   # default is many=False, which would just serialize one object, this will return a whole list
   posts_serialized = PostSerializer(posts, many=True)
   return Response(posts_serialized.data)
+
 
 #Update Post body?
 @api_view(['PUT'])

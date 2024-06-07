@@ -47,13 +47,16 @@ def create_user(request):
 @parser_classes([MultiPartParser, FormParser])
 def create_posts(request):
   user = request.user
+  print('REQUEST: ', request.data['post_author'])
   profile = Profile.objects.get(user=user)
-  post_author = profile.id
+  post_author = profile.user.id
+  print('POST_AUTHOR: ', post_author)
   
   # set these pks up because of the error: 'Incorrect type. Expected pk value, received str.'
   category_pk = PostCategory.objects.filter(category=request.data['post_category']).first().pk
   sub_category_pk = PostSubCategory.objects.filter(post_sub_category=request.data['post_sub_category']).first().pk
   # post_author_pk = Profile.objects.filter(user=request.data['post_author']).first().pk
+
   # image gets set to None and then we basically say if its there run it through the serializer and if not its none
   image = None
   if 'image' in request.data:

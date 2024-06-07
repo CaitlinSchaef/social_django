@@ -7,9 +7,12 @@ class UserSerializer(serializers.ModelSerializer):
     fields = '__all__'
 
 class ProfileSerializer(serializers.ModelSerializer):
+  # adding a serializer from user to profile
+  user = UserSerializer()
+
   class Meta:
     model = Profile
-    fields = ['id', 'first_name', 'last_name']
+    fields = ['id', 'first_name', 'last_name', 'user']
 
 
 class PostCategorySerializer(serializers.ModelSerializer):
@@ -39,9 +42,9 @@ class CommentSerializer(serializers.ModelSerializer):
     fields = ['id', 'comment_author', 'text']
 
 class PostSerializer(serializers.ModelSerializer):
-  # post_author = ProfileSerializer(read_only=True)
-  # post_category = PostCategorySerializer(read_only=True, many=True)
-  # post_sub_category = PostSubCategorySerializer(read_only=True, many=True)
+  post_author = ProfileSerializer(read_only=True)
+  post_category = PostCategorySerializer(read_only=True)
+  post_sub_category = PostSubCategorySerializer(read_only=True)
   
   class Meta:
     model = Posts

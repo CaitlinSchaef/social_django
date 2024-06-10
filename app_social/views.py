@@ -49,8 +49,9 @@ def create_posts(request):
   user = request.user
   print('REQUEST: ', request.data['post_author'])
   profile = Profile.objects.get(user=user)
-  post_author = profile.user.id
-  print('POST_AUTHOR: ', post_author)
+  print('PROFILE PK: ', profile.pk)
+  post_author = profile.pk
+  # print('POST_AUTHOR: ', post_author)
   
   # set these pks up because of the error: 'Incorrect type. Expected pk value, received str.'
   category_pk = PostCategory.objects.filter(category=request.data['post_category']).first().pk
